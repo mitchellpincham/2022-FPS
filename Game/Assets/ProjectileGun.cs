@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class ProjectileGun : MonoBehaviour
@@ -13,7 +14,7 @@ public class ProjectileGun : MonoBehaviour
 
     // Gun stats
     public float timeBetweenShooting, spread, reloadTime;
-    public int magSize;
+    public int magSize, totalBullets;
     public bool allowButtonHold; // semi-auto vs rapidfire
     private int bulletsLeft; // bullets in mag
 
@@ -24,6 +25,7 @@ public class ProjectileGun : MonoBehaviour
     // reference
     public Camera fpsCam;
     public Transform attackPoint;
+    public Text ammoText;
 
     // bugfixing
     public bool allowInvoke;
@@ -36,6 +38,8 @@ public class ProjectileGun : MonoBehaviour
 
     private void Update() {
         MyInput();
+
+        ammoText.text = totalBullets + "/" + bulletsLeft;
     }
 
     private void MyInput() {
@@ -52,11 +56,9 @@ public class ProjectileGun : MonoBehaviour
             Reload();
         }
 
-        Debug.Log("Input");
         // shooting
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0) {
             
-            Debug.Log("Shooting");
             Shoot();
         }
 
@@ -103,8 +105,6 @@ public class ProjectileGun : MonoBehaviour
             Invoke("ResetShot", timeBetweenShooting);
 
         }
-        
-
     }
 
     private void ResetShot() {
@@ -113,12 +113,19 @@ public class ProjectileGun : MonoBehaviour
     }
 
     private void Reload() {
-        reloading = true;
-        Invoke("ReloadFinished", reloadTime);
+        if (totalBullets != 0) {
+            reloading = true;
+            Invoke("ReloadFinished", reloadTime);
+        }
     }
 
     private void ReloadFinished() {
-        bulletsLeft = magSize;
+        int bulletChange = magSize - bulletsLeft;
+        if (bulletChange > totalBullets) {
+            bulletChange = totalBullets;
+        }
+        totalBullets -= bulletChange;
+        bulletsLeft += bulletChange;
         reloading = false;
     }
 }
