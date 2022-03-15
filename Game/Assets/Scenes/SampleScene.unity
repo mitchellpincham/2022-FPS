@@ -348,8 +348,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748598188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.01, y: 2, z: -0.2}
-  m_LocalScale: {x: 1, y: 2, z: 10}
+  m_LocalPosition: {x: 8, y: 1.75, z: -0.2}
+  m_LocalScale: {x: 1, y: 2.5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -446,7 +446,7 @@ MonoBehaviour:
   spread: 3
   reloadTime: 1.5
   magSize: 25
-  totalBullets: 60
+  totalBullets: 120
   allowButtonHold: 1
   fpsCam: {fileID: 797825411}
   attackPoint: {fileID: 888539938}
@@ -598,7 +598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2418315292369915649, guid: db7b36eba9a53984287a86eb23a8e3cb, type: 3}
       propertyPath: m_ClearFlags
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2418315292369915649, guid: db7b36eba9a53984287a86eb23a8e3cb, type: 3}
       propertyPath: m_BackGroundColor.b
@@ -1023,7 +1023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2642051352699614548, guid: b1d86712bb39773438df094f44464de1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2642051352699614548, guid: b1d86712bb39773438df094f44464de1, type: 3}
       propertyPath: m_LocalPosition.y
