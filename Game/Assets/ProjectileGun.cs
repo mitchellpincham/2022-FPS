@@ -6,14 +6,17 @@ using System;
 
 public class ProjectileGun : MonoBehaviour
 {
-    // bullet
+    // Reference
     public GameObject bullet;
+    public Camera fpsCam;
+    public Transform attackPoint;
+    public Text ammoText;
 
     // bullet physics
     public float shootForce;
 
     // Gun stats
-    public float timeBetweenShooting, spread, reloadTime;
+    public float timeBetweenShooting, reloadTime;
     public int magSize, totalBullets;
     public bool allowButtonHold; // semi-auto vs rapidfire
     private int bulletsLeft; // bullets in mag
@@ -21,11 +24,6 @@ public class ProjectileGun : MonoBehaviour
 
     // bools
     bool shooting, readyToShoot, reloading;
-
-    // reference
-    public Camera fpsCam;
-    public Transform attackPoint;
-    public Text ammoText;
 
     // bugfixing
     public bool allowInvoke;
@@ -58,7 +56,6 @@ public class ProjectileGun : MonoBehaviour
 
         // shooting
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0) {
-            
             Shoot();
         }
 
@@ -78,7 +75,7 @@ public class ProjectileGun : MonoBehaviour
         if (Physics.Raycast(ray, out hit)) {
             targetPoint = hit.point;
         } else {
-            targetPoint = ray.GetPoint(75); // point far away
+            targetPoint = ray.GetPoint(25); // point far away
         }
 
         // calculate the direction from attackPoint to targetPoint
@@ -120,6 +117,7 @@ public class ProjectileGun : MonoBehaviour
     }
 
     private void ReloadFinished() {
+        // reload the ammo.
         int bulletChange = magSize - bulletsLeft;
         if (bulletChange > totalBullets) {
             bulletChange = totalBullets;
