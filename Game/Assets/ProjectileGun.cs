@@ -72,7 +72,7 @@ public class ProjectileGun : MonoBehaviour
         if (Physics.Raycast(ray, out hit)) {
             targetPoint = hit.point;
         } else {
-            targetPoint = ray.GetPoint(25); // point far away
+            targetPoint = ray.GetPoint(50); // point far away
         }
 
         // calculate the direction from attackPoint to targetPoint
