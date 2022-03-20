@@ -10,7 +10,6 @@ public class ProjectileGun : MonoBehaviour
     public GameObject bullet;
     public Camera fpsCam;
     public Transform attackPoint;
-    public Text ammoText;
 
     // bullet physics
     public float shootForce;
@@ -19,11 +18,11 @@ public class ProjectileGun : MonoBehaviour
     public float timeBetweenShooting, reloadTime;
     public int magSize, totalBullets;
     public bool allowButtonHold; // semi-auto vs rapidfire
-    private int bulletsLeft; // bullets in mag
+    public int bulletsLeft; // bullets in mag
 
 
     // bools
-    bool shooting, readyToShoot, reloading;
+    public bool shooting, readyToShoot, reloading;
 
     // bugfixing
     public bool allowInvoke;
@@ -36,8 +35,6 @@ public class ProjectileGun : MonoBehaviour
 
     private void Update() {
         MyInput();
-
-        ammoText.text = totalBullets + "/" + bulletsLeft;
     }
 
     private void MyInput() {
