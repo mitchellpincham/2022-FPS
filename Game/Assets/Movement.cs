@@ -79,6 +79,6 @@ public class Movement : MonoBehaviour
         // Add the force.
         this.rb.AddForce(xVel, yVel, zVel, ForceMode.Impulse);
 
-        //t.eulerAngles = new Vector3(0, 0, 0);
+        t.eulerAngles = new Vector3(0, 0, 0);
     }
 }

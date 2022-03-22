@@ -10,6 +10,7 @@ public class ProjectileGun : MonoBehaviour
     public GameObject bullet;
     public Camera fpsCam;
     public Transform attackPoint;
+    public GameObject bulletHole;
 
     // bullet physics
     public float shootForce;
@@ -71,6 +72,12 @@ public class ProjectileGun : MonoBehaviour
         Vector3 targetPoint;
         if (Physics.Raycast(ray, out hit)) {
             targetPoint = hit.point;
+            
+            // create bullet hole
+            GameObject bullethole = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
+            bullethole.transform.position += bullethole.transform.forward / 1000f;
+
+
         } else {
             targetPoint = ray.GetPoint(50); // point far away
         }
