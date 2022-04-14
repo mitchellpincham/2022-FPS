@@ -12,8 +12,12 @@ public class BulletScript : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) {
-        EnemyScript script = collision.gameObject.GetComponent<EnemyScript>();
-        script.BulletHit(20);
+        // damage the enemy
+        if (collision.gameObject.tag == "Enemy") {
+            collision.gameObject.GetComponent<EnemyScript>().BulletHit(20);
+        }
+
+        // destroy bullet
         Destroy(gameObject);
     }
 }

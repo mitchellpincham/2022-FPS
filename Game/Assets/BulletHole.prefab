@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6978921852752087210}
   - component: {fileID: 6978921852752087209}
+  - component: {fileID: 5608358861377541840}
   m_Layer: 0
   m_Name: BulletHole
   m_TagString: Untagged
@@ -82,3 +83,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5608358861377541840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6978921852752087208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd728210846e92428997715b609fb0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 10
+  parent: {fileID: 0}

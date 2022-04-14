@@ -75,6 +75,9 @@ public class ProjectileGun : MonoBehaviour
             
             // create bullet hole
             GameObject bullethole = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
+
+            // set the parent variable in the bullethole script to the object hit.
+            bullethole.GetComponent<BulletholeScript>().parent = hit.collider.gameObject;
             bullethole.transform.position += bullethole.transform.forward / 1000f;
 
 
