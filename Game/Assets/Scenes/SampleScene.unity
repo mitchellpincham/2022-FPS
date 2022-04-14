@@ -834,6 +834,10 @@ PrefabInstance:
       value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2418315292369915649, guid: db7b36eba9a53984287a86eb23a8e3cb, type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418315292369915649, guid: db7b36eba9a53984287a86eb23a8e3cb, type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -900,6 +904,20 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: db7b36eba9a53984287a86eb23a8e3cb, type: 3}
+--- !u!1 &1203727358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2418315292369915651, guid: db7b36eba9a53984287a86eb23a8e3cb, type: 3}
+  m_PrefabInstance: {fileID: 1203727357}
+  m_PrefabAsset: {fileID: 0}
+--- !u!45 &1203727359
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203727358}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 3e5399bd195de7649b874f58c1b9f8a3, type: 2}
 --- !u!1 &1209878761
 GameObject:
   m_ObjectHideFlags: 0
