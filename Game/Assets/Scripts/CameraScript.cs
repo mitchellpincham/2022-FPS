@@ -10,6 +10,8 @@ public class CameraScript : MonoBehaviour
 
     void Start() {
         // Stop the mouse from moving.
+        
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -18,9 +20,12 @@ public class CameraScript : MonoBehaviour
         // Set the camera position to the player.
         // camera.position = player.transform.position + followDistance;
 
-        Movement movement = player.GetComponent<Movement>();
-        // Set the rotation to the players rotation, get the variable from the movement script.
-        camera.localRotation = Quaternion.Euler(-movement.turn.y, movement.turn.x, 0f);
-        
+        // dont move the camera when the mouse is free
+        if (Cursor.lockState == CursorLockMode.Locked) {
+            Movement movement = player.GetComponent<Movement>();
+
+            // Set the rotation to the players rotation, get the variable from the movement script.
+            camera.localRotation = Quaternion.Euler(-movement.turn.y, movement.turn.x, 0f);
+        }        
     }
 }

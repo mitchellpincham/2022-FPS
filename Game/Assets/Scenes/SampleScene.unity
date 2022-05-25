@@ -1581,12 +1581,12 @@ GameObject:
   - component: {fileID: 935217210}
   - component: {fileID: 935217209}
   m_Layer: 5
-  m_Name: Pause Menu
+  m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &935217208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1766,6 +1766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1170430765}
   - component: {fileID: 1170430764}
+  - component: {fileID: 1170430766}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1799,6 +1800,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1170430766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170430763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946b6c82586671847b3af4b70890d98a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPaused: 0
+  PauseMenuCanvas: {fileID: 935217207}
 --- !u!1001 &1203727357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2720,7 +2735,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.693
+  m_Value: 0.567
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -24,8 +24,11 @@ public class Movement : MonoBehaviour
 
     void Update() {
         // set the amount to move camera.
-        turn.x += Input.GetAxis("Mouse X") * sensitivity;
-        turn.y += Input.GetAxis("Mouse Y") * sensitivity;
+        // so the camera doesn't snap when the player resumes the game
+        if (Cursor.lockState == CursorLockMode.Locked) {
+            turn.x += Input.GetAxis("Mouse X") * sensitivity;
+            turn.y += Input.GetAxis("Mouse Y") * sensitivity;
+        }
 
         // stop look up wrapping around.
         // if (turn.x < -180) turn.x += 360;
