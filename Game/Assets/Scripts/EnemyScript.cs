@@ -11,6 +11,8 @@ public class EnemyScript : MonoBehaviour
     public float maxHealth;
     public float health;
     public GameObject player;
+
+    // navmesh stuff
     private NavMeshAgent agent;
     public Transform movePositionTransform;
 
@@ -36,6 +38,20 @@ public class EnemyScript : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
+    void SearchWalkPoint() {
+        // find random point in the range and navmesh
+        float randomZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
+        float randomX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
+        
+        // set the new walkpoint
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        // if the walkpoint is good, then walkPointSet = true.
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround)) {
+            walkPointSet = true;
+        }
+    }
+
     void Patroling() {
         // if no walkpoint is set then set one
         if (!walkPointSet) {
@@ -48,23 +64,9 @@ public class EnemyScript : MonoBehaviour
 
         Vector3 walkPointDistance = transform.position - walkPoint;
 
-        // if close to walkpoint
+        // if close to walkpoint then generate new walkpoint next turn
         if (walkPointDistance.magnitude < 1f) {
             walkPointSet = false;
-        }
-    }
-
-    void SearchWalkPoint() {
-        // find random point in the range and navmesh
-        float randomZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
-        float randomX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
-        
-        // set the new walkpoint
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        // if the walkpoint is good, then walkPointSet = true.
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround)) {
-            walkPointSet = true;
         }
     }
 
@@ -80,31 +82,35 @@ public class EnemyScript : MonoBehaviour
 
     void Update() {
 
+        // set ai destination to the transfrom
         //agent.destination = movePositionTransform.position;
-
-        // distance to player
+        
+        // distance to player, will be a float
         Vector3 playerDistance = player.transform.position - transform.position;
 
         playerInAttackRange = false;
         playerInSightRange = false;
 
+        // if the distance to player is within attack range
         if (playerDistance.magnitude < attackRange) {
             playerInAttackRange = true;
-        } 
+        }
+        // if the distance to player is within sight range
         if (playerDistance.magnitude < sightRange) {
             playerInSightRange = true;
         }
 
-        if (!playerInSightRange && !playerInAttackRange) {
+        // call the movement functions depending on what the ai can see
+        if (!playerInSightRange && !playerInAttackRange) { // patrol
             Debug.Log("patroling");
             Patroling();
-        } else if (!playerInAttackRange) {
+        } else if (!playerInAttackRange) {                 // chase
             Debug.Log("chasing");
             ChasePlayer();
-        } else {
+        } else {                                           // attack
             Debug.Log("attacking");
             AttackPlayer();
-        }
+        } 
 
 
         // set the health bar value
