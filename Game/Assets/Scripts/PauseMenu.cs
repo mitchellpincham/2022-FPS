@@ -1,20 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     public bool isPaused;
 
-    public GameObject PauseMenuCanvas;
+    GameObject pauseMenuCanvas;
+    
+    public Button resumeButton;
+    public Button menuButton;
+    public Button quitButton;
 
     void Awake() {
-        PauseMenuCanvas.SetActive(false);
+        pauseMenuCanvas = GameObject.Find("PauseMenu");
+        pauseMenuCanvas.SetActive(false);
         isPaused = false;
+
+        // resumeButton = GameObject.Find("ResumeButton").GetComponent<Button>();
+        // menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
+        // quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
+
+        resumeButton.onClick.AddListener(Resume);
+        menuButton.onClick.AddListener(MainMenu);
+        quitButton.onClick.AddListener(QuitGame);
     }
 
-    void Update()
-    {
+    void Update() {
         if (Input.GetKeyDown(KeyCode.BackQuote)) {
             if (isPaused) {
                 ResumeGame();
@@ -24,8 +39,20 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    void PauseGame() {
-        PauseMenuCanvas.SetActive(true);
+    void Resume() {
+        ResumeGame();
+    }
+
+    public void MainMenu() {
+        this.GetComponent<GameManager>().LoadLevel(0);
+    }
+
+    void QuitGame() {
+        Application.Quit();
+    }
+
+    public void PauseGame() {
+        pauseMenuCanvas.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
 
@@ -33,8 +60,11 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    void ResumeGame() {
-        PauseMenuCanvas.SetActive(false);
+    public void ResumeGame() {
+
+        Debug.Log("Yes");
+
+        pauseMenuCanvas.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
         

@@ -31,11 +31,11 @@ public class Movement : MonoBehaviour
         }
 
         // stop look up wrapping around.
-        // if (turn.x < -180) turn.x += 360;
-        // if (turn.x > 180) turn.x %= 360;
+        if (turn.x < -180) turn.x += 360;
+        if (turn.x > 180) turn.x %= 360;
 
-        // if (turn.y > 90) turn.y = 90;
-        // if (turn.y < -90) turn.y = -90;
+        if (turn.y > 90) turn.y = 90;
+        if (turn.y < -90) turn.y = -90;
 
         // key inputs
         this.forward = Input.GetKey("w");

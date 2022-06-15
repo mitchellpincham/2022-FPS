@@ -102,13 +102,13 @@ public class EnemyScript : MonoBehaviour
 
         // call the movement functions depending on what the ai can see
         if (!playerInSightRange && !playerInAttackRange) { // patrol
-            Debug.Log("patroling");
+            // Debug.Log("patroling");
             Patroling();
         } else if (!playerInAttackRange) {                 // chase
-            Debug.Log("chasing");
+            // Debug.Log("chasing");
             ChasePlayer();
         } else {                                           // attack
-            Debug.Log("attacking");
+            // Debug.Log("attacking");
             AttackPlayer();
         } 
 
