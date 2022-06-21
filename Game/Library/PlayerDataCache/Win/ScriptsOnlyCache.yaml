@@ -10,6 +10,7 @@ ScriptsOnlyBuild:
     - Movement
     - PauseMenu
     - ProjectileGun
+    - SettingsMenu
     - StartMenu
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -33,7 +34,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Scenes/Level 1.unity:
+    Assets/Scenes/Level 01.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -83,27 +84,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2660}
     - Class: 114
-      Script: {instanceID: 2840}
+      Script: {instanceID: 2842}
     - Class: 114
-      Script: {instanceID: 2894}
+      Script: {instanceID: 2896}
     - Class: 114
-      Script: {instanceID: 3064}
+      Script: {instanceID: 3066}
     - Class: 114
-      Script: {instanceID: 3318}
+      Script: {instanceID: 3320}
     - Class: 114
-      Script: {instanceID: 3382}
+      Script: {instanceID: 3384}
     - Class: 114
-      Script: {instanceID: 3464}
+      Script: {instanceID: 3466}
     - Class: 114
-      Script: {instanceID: 3470}
+      Script: {instanceID: 3472}
     - Class: 114
-      Script: {instanceID: 3522}
+      Script: {instanceID: 3524}
     - Class: 114
-      Script: {instanceID: 3572}
+      Script: {instanceID: 3574}
     - Class: 114
-      Script: {instanceID: 3590}
+      Script: {instanceID: 3592}
     - Class: 114
-      Script: {instanceID: 3652}
+      Script: {instanceID: 3654}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -164,21 +165,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2704}
     - Class: 114
-      Script: {instanceID: 2840}
+      Script: {instanceID: 2810}
     - Class: 114
-      Script: {instanceID: 2894}
+      Script: {instanceID: 2842}
     - Class: 114
-      Script: {instanceID: 3044}
+      Script: {instanceID: 2896}
     - Class: 114
-      Script: {instanceID: 3064}
+      Script: {instanceID: 3046}
     - Class: 114
-      Script: {instanceID: 3382}
+      Script: {instanceID: 3066}
     - Class: 114
-      Script: {instanceID: 3464}
+      Script: {instanceID: 3384}
     - Class: 114
-      Script: {instanceID: 3522}
+      Script: {instanceID: 3466}
     - Class: 114
-      Script: {instanceID: 17408}
+      Script: {instanceID: 3524}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -198,6 +199,57 @@ ScriptsOnlyBuild:
     - Class: 238
       Script: {instanceID: 0}
     - Class: 258
+      Script: {instanceID: 0}
+    Assets/Scenes/Settings.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1512}
+    - Class: 114
+      Script: {instanceID: 1838}
+    - Class: 114
+      Script: {instanceID: 2660}
+    - Class: 114
+      Script: {instanceID: 2842}
+    - Class: 114
+      Script: {instanceID: 2896}
+    - Class: 114
+      Script: {instanceID: 3066}
+    - Class: 114
+      Script: {instanceID: 3384}
+    - Class: 114
+      Script: {instanceID: 3524}
+    - Class: 114
+      Script: {instanceID: 17100}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -484,6 +536,12 @@ ScriptsOnlyBuild:
     className: TMP_Settings
   - hash:
       serializedVersion: 2
+      Hash: e2a4044a2b978723c9ad02331ae0f6b2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StartMenu
+  - hash:
+      serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -682,12 +740,13 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: e621b84ef3a6e7293e5385170af0a7f0
+      Hash: 306ce4b0929fbd320ac2e81c0fb1c2f4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: StartMenu
+    className: SettingsMenu
   platform: 5
   scenePathNames:
   - Assets/Scenes/Main Menu.unity
-  - Assets/Scenes/Level 1.unity
+  - Assets/Scenes/Level 01.unity
+  - Assets/Scenes/Settings.unity
   playerPath: C:/Users/mitchell_pincham/FPS-Game-2022/Game/FPS Game.exe
