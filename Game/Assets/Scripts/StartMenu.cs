@@ -7,20 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
-    public Button playButton;
-    public Button settingsButton;
-    public Button quitButton;
+    public Button PlayButton;
+    public Button SettingsButton;
+    public Button QuitButton;
 
     void Awake() {
         //MainMenu();
 
-        playButton = GameObject.Find("PlayButton").GetComponent<Button>();
-        settingsButton = GameObject.Find("SettingsButton").GetComponent<Button>();
-        quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
+        PlayButton = GameObject.Find("PlayButton").GetComponent<Button>();
+        SettingsButton = GameObject.Find("SettingsButton").GetComponent<Button>();
+        QuitButton = GameObject.Find("QuitButton").GetComponent<Button>();
 
-        playButton.onClick.AddListener(StartGame);
-        settingsButton.onClick.AddListener(Settings);
-        quitButton.onClick.AddListener(QuitGame);
+        PlayButton.onClick.AddListener(StartGame);
+        SettingsButton.onClick.AddListener(Settings);
+        QuitButton.onClick.AddListener(QuitGame);
     }
 
     void Update() {
@@ -28,7 +28,7 @@ public class StartMenu : MonoBehaviour
     }
 
     void StartGame() {
-        SceneManager.LoadScene("Level 01");
+        SceneManager.LoadScene("Level Select");
     }
 
     void Settings() {
