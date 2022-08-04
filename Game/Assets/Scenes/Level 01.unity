@@ -1730,7 +1730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f6862194e5ec941b4067aab2a588ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playButton: {fileID: 0}
 --- !u!4 &1170430765
 Transform:
   m_ObjectHideFlags: 0
@@ -1758,7 +1757,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
-  PauseMenuCanvas: {fileID: 935217207}
   resumeButton: {fileID: 1503990540}
   menuButton: {fileID: 176312809}
   quitButton: {fileID: 827877161}
@@ -2245,6 +2243,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1879996882}
     - target: {fileID: 537797507762129135, guid: aa1c1d97d7f8b1c4ab70d01b360a0fb1, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 7461315555846028529, guid: c8591cfaddcca9742a3e88db9b3b2962, type: 3}
+    - target: {fileID: 537797507762129135, guid: aa1c1d97d7f8b1c4ab70d01b360a0fb1, type: 3}
       propertyPath: sightRange
       value: 20
       objectReference: {fileID: 0}
@@ -2255,6 +2257,10 @@ PrefabInstance:
     - target: {fileID: 537797507762129135, guid: aa1c1d97d7f8b1c4ab70d01b360a0fb1, type: 3}
       propertyPath: walkPointRange
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 537797507762129135, guid: aa1c1d97d7f8b1c4ab70d01b360a0fb1, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 537797507762129135, guid: aa1c1d97d7f8b1c4ab70d01b360a0fb1, type: 3}
       propertyPath: whatIsGround.m_Bits

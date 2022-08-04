@@ -17,8 +17,8 @@ public class PauseMenu : MonoBehaviour
 
     void Awake() {
         pauseMenuCanvas = GameObject.Find("PauseMenu");
-        pauseMenuCanvas.SetActive(false);
-        isPaused = false;
+        
+        ResumeGame();
 
         // resumeButton = GameObject.Find("ResumeButton").GetComponent<Button>();
         // menuButton = GameObject.Find("MenuButton").GetComponent<Button>();

@@ -42,10 +42,8 @@ public class Movement : MonoBehaviour
         this.backward = Input.GetKey("s");
         this.left = Input.GetKey("a");
         this.right = Input.GetKey("d");
+        this.jump = Input.GetKeyDown(KeyCode.Space);
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            this.jump = true;
-        }
     }
     void FixedUpdate() {
         

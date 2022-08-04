@@ -11,6 +11,7 @@ public class EnemyScript : MonoBehaviour
     public float maxHealth;
     public float health;
     public GameObject player;
+    public GameObject projectile; 
 
     // navmesh stuff
     private NavMeshAgent agent;
@@ -25,7 +26,7 @@ public class EnemyScript : MonoBehaviour
 
     // attacking
     public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    public bool canAttack;
 
     // states
     public float sightRange, attackRange;
@@ -34,8 +35,12 @@ public class EnemyScript : MonoBehaviour
     void Awake() {
         health = maxHealth;
 
+        canAttack = true;
+
         // set the navmesh object
         agent = GetComponent<NavMeshAgent>();
+
+        //projectile = GameObject.Find("Bullet");
     }
 
     void SearchWalkPoint() {
@@ -78,6 +83,27 @@ public class EnemyScript : MonoBehaviour
     void AttackPlayer() {
         // if the player is in the attack range then dont move and shoot him.
         agent.SetDestination(transform.position);
+
+        if (canAttack) {
+
+            // attack the player
+            GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
+
+            bullet.GetComponent<BulletScript>().parent = gameObject;
+
+            //bullet.transform.position += bullet.transform.forward * 2;
+
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 3f, ForceMode.Impulse);
+            bullet.GetComponent<Rigidbody>().AddForce(transform.up * 0.5f, ForceMode.Impulse);
+
+            canAttack = false;
+
+            Invoke("ResetAttack", timeBetweenAttacks);
+        }
+    }
+
+    void ResetAttack() {
+        canAttack = true;
     }
 
     void Update() {
