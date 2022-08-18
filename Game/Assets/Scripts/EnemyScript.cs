@@ -43,6 +43,17 @@ public class EnemyScript : MonoBehaviour
         //projectile = GameObject.Find("Bullet");
     }
 
+    float map(float val, float start1, float end1, float start2, float end2) {
+        /*
+            Takes a value and a first range (start1, end2)
+            and a second range (start2, end2)
+
+            this function returns a value between the second range relative to where the value is in the first range
+        */
+	    return (start2 + (end2 - start2) * ((val - start1) / (end1 - start1)));
+    }
+
+
     void SearchWalkPoint() {
         // find random point in the range and navmesh
         float randomZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
@@ -75,31 +86,53 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    void ChasePlayer() {
+    void ChasePlayer(float distanceToPlayer) {
         // if player is in sight, then move towards him.
         agent.SetDestination(player.transform.position);
-    }
-
-    void AttackPlayer() {
-        // if the player is in the attack range then dont move and shoot him.
-        agent.SetDestination(transform.position);
 
         if (canAttack) {
 
-            // attack the player
-            GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
-
-            bullet.GetComponent<BulletScript>().parent = gameObject;
-
-            //bullet.transform.position += bullet.transform.forward * 2;
-
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 3f, ForceMode.Impulse);
-            bullet.GetComponent<Rigidbody>().AddForce(transform.up * 0.5f, ForceMode.Impulse);
+            ShootPlayer(distanceToPlayer);
 
             canAttack = false;
 
             Invoke("ResetAttack", timeBetweenAttacks);
         }
+    }
+
+    void AttackPlayer(float distanceToPlayer) {
+        // if the player is in the attack range then dont move and shoot him.
+        agent.SetDestination(transform.position);
+
+        if (canAttack) {
+
+            ShootPlayer(distanceToPlayer);
+
+            canAttack = false;
+
+            Invoke("ResetAttack", timeBetweenAttacks);
+        }
+    }
+
+    void ShootPlayer(float distanceToPlayer) {
+        // attack the player
+        GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
+
+        Physics.IgnoreCollision(bullet.GetComponent<Collider>(), GetComponent<Collider>());
+
+        bullet.transform.rotation = transform.rotation;
+        bullet.transform.Rotate(0.0f, UnityEngine.Random.Range(-10f, 10f), 0.0f, Space.Self);
+
+        //bullet.transform.LookAt(player.transform);
+
+        bullet.GetComponent<BulletScript>().parent = gameObject;
+
+        //bullet.transform.position += bullet.transform.forward * 0.5f;
+        //bullet.transform.position += bullet.transform.up;
+
+        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 3f, ForceMode.Impulse);
+        float distanceScale = map(distanceToPlayer, 0, sightRange, 0, 0.5f);
+        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.up * UnityEngine.Random.Range(-0.5f + distanceScale, 0.2f + distanceScale), ForceMode.Impulse);
     }
 
     void ResetAttack() {
@@ -132,12 +165,11 @@ public class EnemyScript : MonoBehaviour
             Patroling();
         } else if (!playerInAttackRange) {                 // chase
             // Debug.Log("chasing");
-            ChasePlayer();
+            ChasePlayer(playerDistance.magnitude);
         } else {                                           // attack
             // Debug.Log("attacking");
-            AttackPlayer();
+            AttackPlayer(playerDistance.magnitude);
         } 
-
 
         // set the health bar value
         Slider healthSlider = (Slider)gameObject.GetComponentInChildren(typeof(Slider));

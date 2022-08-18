@@ -14,15 +14,21 @@ public class BulletScript : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) {
+
+
         // damage the enemy
-        /*if (collision.gameObject.tag == "Enemy") {
-            if (collision.gameObject != parent) {
+        if (collision.gameObject.tag == "Enemy") {
+            if (collision.gameObject.tag != parent.tag) {
                 collision.gameObject.GetComponent<EnemyScript>().BulletHit(20);
             }
+        } 
+        else if (collision.gameObject.tag == "Player") {
+            if (collision.gameObject.tag != parent.tag) {
+                collision.gameObject.GetComponent<PlayerManager>().BulletHit(20);
+            }
         }
-        */
-        // destroy bullet
 
+        // destroy bullet
         if (collision.gameObject.tag != "Bullet" && collision.gameObject.tag != parent.tag) {
             Destroy(gameObject);
         }
