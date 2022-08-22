@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthSlider = (Slider)GameObject.Find("PlayerHealth").GetComponent<Slider>();;
+        healthSlider = (Slider)GameObject.Find("PlayerHealth").GetComponent<Slider>();
     }
 
     // Update is called once per frame

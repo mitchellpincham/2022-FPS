@@ -15,7 +15,6 @@ public class EnemyScript : MonoBehaviour
 
     // navmesh stuff
     private NavMeshAgent agent;
-    public Transform movePositionTransform;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -39,6 +38,8 @@ public class EnemyScript : MonoBehaviour
 
         // set the navmesh object
         agent = GetComponent<NavMeshAgent>();
+
+        player = GameObject.Find("Player");
 
         //projectile = GameObject.Find("Bullet");
     }
