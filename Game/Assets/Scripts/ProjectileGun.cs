@@ -94,7 +94,7 @@ public class ProjectileGun : MonoBehaviour
         GameObject currentBullet = Instantiate(bullet, 
             attackPoint.position, Quaternion.identity);
 
-        currentBullet.GetComponent<BulletScript>().parent = gameObject;
+        currentBullet.GetComponent<BulletScript>().parent = GameObject.Find("Player");
 
         // rotate the bullet
         currentBullet.transform.forward = directionWithoutSpread;

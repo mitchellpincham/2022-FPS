@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
         
         switch (enemiesLeft) {
             case 0:
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene("Main Menu");
                 break;
             case 1:

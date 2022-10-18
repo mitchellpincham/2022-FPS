@@ -21,7 +21,7 @@ public class BulletScript : MonoBehaviour
             if (collision.gameObject.tag != parent.tag) {
                 collision.gameObject.GetComponent<EnemyScript>().BulletHit(20);
             }
-        } 
+        }
         else if (collision.gameObject.tag == "Player") {
             if (collision.gameObject.tag != parent.tag) {
                 collision.gameObject.GetComponent<PlayerManager>().BulletHit(20);
@@ -29,7 +29,7 @@ public class BulletScript : MonoBehaviour
         }
 
         // destroy bullet
-        if (collision.gameObject.tag != "Bullet" && collision.gameObject.tag != parent.tag) {
+        if (collision.gameObject.tag != parent.tag) {
             Destroy(gameObject);
         }
     }

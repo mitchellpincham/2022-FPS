@@ -9,12 +9,21 @@ public class SettingsMenu : MonoBehaviour
 { 
     public Button backButton;
 
+    public Slider difficultySlider;
+
     void Awake() {
         //MainMenu();
 
-        backButton = GameObject.Find("BackButton").GetComponent<Button>();
-
+        //backButton = GameObject.Find("BackButton").GetComponent<Button>();
         backButton.onClick.AddListener(BackToMenu);
+
+        //difficultySlider = GameObject.Find("difficultySlider").GetComponent<Slider>();
+    }
+    
+    void Update() {
+        StartMenu.difficulty = (int)difficultySlider.value;
+
+        Debug.Log((int)difficultySlider.value);
     }
 
     public void BackToMenu() {

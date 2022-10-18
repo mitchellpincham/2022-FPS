@@ -11,6 +11,8 @@ public class StartMenu : MonoBehaviour
     public Button SettingsButton;
     public Button QuitButton;
 
+    public static int difficulty;
+
     void Awake() {
         //MainMenu();
 

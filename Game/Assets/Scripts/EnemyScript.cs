@@ -7,7 +7,6 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
-
     public float maxHealth;
     public float health;
     public GameObject player;
@@ -34,6 +33,7 @@ public class EnemyScript : MonoBehaviour
     void Awake() {
         health = maxHealth;
 
+        SearchWalkPoint();
         canAttack = true;
 
         // set the navmesh object
@@ -64,9 +64,10 @@ public class EnemyScript : MonoBehaviour
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
         // if the walkpoint is good, then walkPointSet = true.
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround)) {
-            walkPointSet = true;
+        if (!Physics.Linecast(walkPoint, transform.position)) {
+            SearchWalkPoint();
         }
+        walkPointSet = true;
     }
 
     void Patroling() {
@@ -117,12 +118,24 @@ public class EnemyScript : MonoBehaviour
 
     void ShootPlayer(float distanceToPlayer) {
         // attack the player
+
+        // get the difficulty set by player, also plus 1 so no divide by 0 error.
+        int difficulty = StartMenu.difficulty + 1;
+
+        Debug.Log(difficulty);
+
+        // Spawn bullet
         GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
 
         Physics.IgnoreCollision(bullet.GetComponent<Collider>(), GetComponent<Collider>());
 
         bullet.transform.rotation = transform.rotation;
-        bullet.transform.Rotate(0.0f, UnityEngine.Random.Range(-10f, 10f), 0.0f, Space.Self);
+
+        // adjust the roation of bullet according to difficulty, 
+        // since difficulty goes from 0 to 100 it must be inverted for angle change.
+        float dy = UnityEngine.Random.Range(-50f, 50f) / difficulty;
+
+        bullet.transform.Rotate(0.0f, dy, 0.0f, Space.Self);
 
         //bullet.transform.LookAt(player.transform);
 
@@ -131,9 +144,16 @@ public class EnemyScript : MonoBehaviour
         //bullet.transform.position += bullet.transform.forward * 0.5f;
         //bullet.transform.position += bullet.transform.up;
 
+
+        // add a forwards forcs towards the player
         bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 3f, ForceMode.Impulse);
+
         float distanceScale = map(distanceToPlayer, 0, sightRange, 0, 0.5f);
-        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.up * UnityEngine.Random.Range(-0.5f + distanceScale, 0.2f + distanceScale), ForceMode.Impulse);
+
+        // change the angle according to random and difficulty
+        float angleChange = UnityEngine.Random.Range(-0.35f / difficulty + distanceScale, 0.15f / difficulty + distanceScale);
+
+        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.up * angleChange, ForceMode.Impulse);
     }
 
     void ResetAttack() {
