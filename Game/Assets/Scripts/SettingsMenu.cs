@@ -6,27 +6,29 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class SettingsMenu : MonoBehaviour
-{ 
+{
+    // stuff on scene
     public Button backButton;
-
     public Slider difficultySlider;
 
     void Awake() {
-        //MainMenu();
 
-        //backButton = GameObject.Find("BackButton").GetComponent<Button>();
+        // listner for button
+        backButton = GameObject.Find("BackButton").GetComponent<Button>();
         backButton.onClick.AddListener(BackToMenu);
 
         //difficultySlider = GameObject.Find("difficultySlider").GetComponent<Slider>();
     }
     
     void Update() {
-        StartMenu.difficulty = (int)difficultySlider.value;
+        // get the difficulty each frame
+        Constants.difficulty = (int)difficultySlider.value;
 
-        Debug.Log((int)difficultySlider.value);
+        // Debug.Log((int)difficultySlider.value);
     }
 
     public void BackToMenu() {
+        // back button is pressed
         SceneManager.LoadScene("Main Menu");
     }
 }

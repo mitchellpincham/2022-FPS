@@ -22,6 +22,8 @@ public class Movement : MonoBehaviour
     private bool right;
     private bool jump;
 
+    private bool canJump;
+
     void Update() {
         // set the amount to move camera.
         // so the camera doesn't snap when the player resumes the game
@@ -43,8 +45,12 @@ public class Movement : MonoBehaviour
         this.left = Input.GetKey("a");
         this.right = Input.GetKey("d");
         this.jump = Input.GetKeyDown(KeyCode.Space);
-
     }
+
+    void OnCollisionEnter(Collision collision) {
+        this.canJump = true;
+    }
+    
     void FixedUpdate() {
         
         // the values to move the player forward, back, left and right.
@@ -62,19 +68,22 @@ public class Movement : MonoBehaviour
         if (this.left) leftVel -= this.vel;
         if (this.right) leftVel += this.vel;
 
-        // convert to x, y, z.
+        // convert to x, y, z
+        // forwards
         float angle = turn.x * (float)Math.PI / 180f;
         zVel += forwardVel * (float)Math.Cos(angle);
         xVel += forwardVel * (float)Math.Sin(angle);
 
+        // sideways
         angle += (float)Math.PI / 2f;
         zVel += leftVel * (float)Math.Cos(angle);
         xVel += leftVel * (float)Math.Sin(angle);
         
         // jumping force.
-        if (this.jump) {
+        if (this.jump && this.canJump) {
             yVel += this.jumpVel;
             this.jump = false;
+            this.canJump = false;
         }
 
         // Add the force.

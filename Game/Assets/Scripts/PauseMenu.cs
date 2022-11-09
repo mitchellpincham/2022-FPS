@@ -8,14 +8,16 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public bool isPaused;
-
     GameObject pauseMenuCanvas;
     
+    // buttons on the canvas
     public Button resumeButton;
     public Button menuButton;
     public Button quitButton;
 
     void Awake() {
+        // when the game starts set things up.
+
         pauseMenuCanvas = GameObject.Find("PauseMenu");
         
         ResumeGame();
@@ -24,23 +26,21 @@ public class PauseMenu : MonoBehaviour
         // menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
         // quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
 
-        resumeButton.onClick.AddListener(Resume);
+        // add listener methods for each button
+        resumeButton.onClick.AddListener(ResumeGame);
         menuButton.onClick.AddListener(MainMenu);
         quitButton.onClick.AddListener(QuitGame);
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.BackQuote)) {
+        // pause/resume game if key is pressed.
+        if (Input.GetKeyDown(KeyCode.Escape)) {
             if (isPaused) {
                 ResumeGame();
             } else {
                 PauseGame();
             }
         }
-    }
-
-    void Resume() {
-        ResumeGame();
     }
 
     public void MainMenu() {

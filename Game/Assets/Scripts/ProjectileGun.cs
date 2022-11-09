@@ -35,10 +35,6 @@ public class ProjectileGun : MonoBehaviour
     }
 
     private void Update() {
-        MyInput();
-    }
-
-    private void MyInput() {
 
         if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
@@ -48,18 +44,18 @@ public class ProjectileGun : MonoBehaviour
             Reload();
         }
         // auto reload when no bullets left
-        if (readyToShoot && shooting && !reloading && bulletsLeft <= 0) {
+        else if (readyToShoot && shooting && !reloading && bulletsLeft <= 0) {
             Reload();
         }
-
         // shooting
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0) {
+        else if (readyToShoot && shooting && !reloading && bulletsLeft > 0) {
             Shoot();
         }
 
     }
 
     private void Shoot() {
+        // shoot the gun
         readyToShoot = false;
 
         bulletsLeft--;
@@ -82,7 +78,7 @@ public class ProjectileGun : MonoBehaviour
 
 
         } else {
-            targetPoint = ray.GetPoint(50); // point far away
+            targetPoint = ray.GetPoint(50); // pick a point far away if ray doesn't hit anything
         }
 
         // calculate the direction from attackPoint to targetPoint
@@ -114,11 +110,13 @@ public class ProjectileGun : MonoBehaviour
     }
 
     private void ResetShot() {
+        // let the player shoot again
         readyToShoot = true;
         allowInvoke = true;
     }
 
     private void Reload() {
+        // reload the gun after time
         if (totalBullets != 0) {
             reloading = true;
             Invoke("ReloadFinished", reloadTime);
@@ -131,6 +129,7 @@ public class ProjectileGun : MonoBehaviour
         if (bulletChange > totalBullets) {
             bulletChange = totalBullets;
         }
+        
         totalBullets -= bulletChange;
         bulletsLeft += bulletChange;
         reloading = false;

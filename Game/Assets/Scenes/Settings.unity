@@ -864,7 +864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a152946e5d6b6ab48b60194308e9ec5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backButton: {fileID: 0}
+  backButton: {fileID: 800289174}
+  difficultySlider: {fileID: 2121014779}
 --- !u!1 &964016059
 GameObject:
   m_ObjectHideFlags: 0

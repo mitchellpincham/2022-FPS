@@ -120,7 +120,7 @@ public class EnemyScript : MonoBehaviour
         // attack the player
 
         // get the difficulty set by player, also plus 1 so no divide by 0 error.
-        int difficulty = StartMenu.difficulty + 1;
+        int difficulty = Constants.difficulty + 1;
 
         Debug.Log(difficulty);
 
